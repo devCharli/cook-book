@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 8px 16px;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar-right {
+  display: flex;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.create {
+  padding: 20px 60px;
+}
+
+.create-link {
+  margin-left: 16px;
+}
+
+.recipe-list {
+  padding: 20px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.recipe-card {
+  border: 1px solid #eee;
+  padding: 15px;
+  line-height: 1.5;
+}
+
+.single-recipe {
+  padding: 20px 40px;
+  line-height: 2;
+}
+
+.single-recipe ul {
+  list-style-type: none;
+  display: flex;
+  padding-left: 0;
+}
+
+.single-recipe ul li {
+  margin-right: 10px;
+}
+
+.single-recipe ul li::after {
+  content: ",";
+}
+
+.single-recipe ul li:last-child::after {
+  content: ".";
+}
+
+.create-page {
+  padding: 40px 60px;
+}
+
+label {
+  display: block;
+}
+
+label span {
+  display: block;
 }

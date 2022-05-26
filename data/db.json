@@ -1,0 +1,21 @@
+{
+  "recipes": [
+    {
+      "title": "kimchi",
+      "ingredients": [
+        "cabbage",
+        "pepper"
+      ],
+      "method": "ferment",
+      "cookingTime": "3000minutes",
+      "id": "oaCs75z"
+    },
+    {
+      "title": "duck duck",
+      "ingredients": [],
+      "method": "oil",
+      "cookingTime": "33minutes",
+      "id": "j1K5vR5"
+    }
+  ]
+}
