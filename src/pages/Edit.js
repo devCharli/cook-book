@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
 const Edit = () => {
   const history = useHistory();
   const { id } = useParams();
-  const { data } = useFetch("http://localhost:3004/recipes/" + id);
+
   const [title, setTitle] = useState("");
   const [method, setMethod] = useState("");
   const [cookingTime, setCookingTime] = useState("");
@@ -14,14 +13,30 @@ const Edit = () => {
   const [ingredients, setIngredients] = useState([]);
   const ingredientInput = useRef(null);
 
-  const handleSubmit = (e) => {
+  const { data, isPending, error, options } = useFetch(
+    `http://localhost:3004/recipes/${id}`
+  );
+
+  const { putData } = useFetch(`http://localhost:3004/recipes/${id}`, "PUT");
+
+  useEffect(() => {
+    if (data) {
+      setTitle(data.title);
+      setMethod(data.method);
+      setCookingTime(data.cookingTime);
+      setIngredients(data.ingredients);
+    }
+  }, [data]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // postData({
-    //   title,
-    //   ingredients,
-    //   method,
-    //   cookingTime: cookingTime + "minutes",
-    // });
+    await putData({
+      title,
+      ingredients,
+      method,
+      cookingTime: cookingTime + "minutes",
+    });
+    history.push("/");
   };
 
   const handleAdd = (e) => {
@@ -36,66 +51,66 @@ const Edit = () => {
     ingredientInput.current.focus();
   };
 
-  // useEffect(() => {
-  //   if (data) {
-  //     history.push("/");
-  //   }
-  // }, [data, history]);
-
   return (
-    <div className="create-page">
-      <h2>Edit a New Recipe</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Recipe title:</span>
-          <input
-            type="text"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-            required
-          />
-        </label>
+    <>
+      {error && <p>{error}</p>}
+      {isPending && <p>Loading...</p>}
+      {data && (
+        <div className="create-page">
+          <h2>Edit Recipe</h2>
+          <form onSubmit={handleSubmit}>
+            <label>
+              <span>Recipe title:</span>
+              <input
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+                required
+              />
+            </label>
 
-        <label>
-          <span>Recipe Ingredients:</span>
-          <div>
-            <input
-              type="text"
-              onChange={(e) => setNewIngredient(e.target.value)}
-              value={newIngredient}
-              ref={ingredientInput}
-            />
-            <button onClick={handleAdd}>add</button>
-          </div>
-          <p>
-            Current Ingredients:{" "}
-            {ingredients.map((i) => (
-              <em key={i}>{i}, </em>
-            ))}
-          </p>
-        </label>
+            <label>
+              <span>Recipe Ingredients:</span>
+              <div>
+                <input
+                  type="text"
+                  onChange={(e) => setNewIngredient(e.target.value)}
+                  value={newIngredient}
+                  ref={ingredientInput}
+                />
+                <button onClick={handleAdd}>add</button>
+              </div>
+              <p>
+                Current Ingredients:{" "}
+                {ingredients.map((i) => (
+                  <em key={i}>{i}, </em>
+                ))}
+              </p>
+            </label>
 
-        <label>
-          <span>Recipe Method:</span>
-          <textarea
-            onChange={(e) => setMethod(e.target.value)}
-            value={method}
-            required
-          />
-        </label>
+            <label>
+              <span>Recipe Method:</span>
+              <textarea
+                onChange={(e) => setMethod(e.target.value)}
+                value={method}
+                required
+              />
+            </label>
 
-        <label>
-          <span>Cooking time (minutes):</span>
-          <input
-            type="text"
-            onChange={(e) => setCookingTime(e.target.value)}
-            value={cookingTime}
-            required
-          />
-        </label>
-        <button>Submit</button>
-      </form>
-    </div>
+            <label>
+              <span>Cooking time (minutes):</span>
+              <input
+                type="text"
+                onChange={(e) => setCookingTime(e.target.value)}
+                value={cookingTime}
+                required
+              />
+            </label>
+            <button>Submit</button>
+          </form>
+        </div>
+      )}
+    </>
   );
 };
 

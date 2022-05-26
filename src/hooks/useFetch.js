@@ -5,7 +5,6 @@ const useFetch = (url, method = "GET") => {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const [options, setOptions] = useState(null);
-
   const postData = (postData) => {
     setOptions({
       method: "POST",
@@ -14,11 +13,11 @@ const useFetch = (url, method = "GET") => {
     });
   };
 
-  const updateData = (updateData) => {
+  const putData = (putData) => {
     setOptions({
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(postData),
+      body: JSON.stringify(putData),
     });
   };
 
@@ -68,7 +67,7 @@ const useFetch = (url, method = "GET") => {
     };
   }, [url, method, options]);
 
-  return { data, isPending, error, postData, updateData };
+  return { data, isPending, error, postData, putData, options };
 };
 
 export default useFetch;

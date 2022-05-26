@@ -1,21 +1,41 @@
 {
   "recipes": [
     {
-      "title": "kimchi",
+      "title": "호박죽",
       "ingredients": [
-        "cabbage",
-        "pepper"
+        "duck"
       ],
-      "method": "ferment",
-      "cookingTime": "3000minutes",
-      "id": "oaCs75z"
+      "method": "oil",
+      "cookingTime": "33minutesminutesminutesminutesminutesminutesminutesminutesminutesminutesminutesminutes",
+      "id": "j1K5vR5"
     },
     {
-      "title": "duck duck",
-      "ingredients": [],
-      "method": "oil",
-      "cookingTime": "33minutes",
-      "id": "j1K5vR5"
+      "title": "삼계탕",
+      "ingredients": [
+        "food",
+        "닭"
+      ],
+      "method": "je;;p",
+      "cookingTime": "111minutesminutes",
+      "id": "e6JlteT"
+    },
+    {
+      "title": "전복죽",
+      "ingredients": [
+        "호박"
+      ],
+      "method": "끓읻나",
+      "cookingTime": "30minutesminutes",
+      "id": "_7f5ZRm"
+    },
+    {
+      "title": "egg benedict",
+      "ingredients": [
+        "egg"
+      ],
+      "method": "mix mix",
+      "cookingTime": "19minutes",
+      "id": "LkyPFoR"
     }
   ]
 }
