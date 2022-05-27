@@ -13,11 +13,14 @@ const Edit = () => {
   const [ingredients, setIngredients] = useState([]);
   const ingredientInput = useRef(null);
 
-  const { data, isPending, error, options } = useFetch(
+  const { data, isPending, error } = useFetch(
     `http://localhost:3004/recipes/${id}`
   );
 
-  const { putData } = useFetch(`http://localhost:3004/recipes/${id}`, "PUT");
+  const { data: recipe, putData } = useFetch(
+    `http://localhost:3004/recipes/${id}`,
+    "PUT"
+  );
 
   useEffect(() => {
     if (data) {
@@ -28,15 +31,20 @@ const Edit = () => {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (recipe) {
+      history.push("/");
+    }
+  }, [recipe]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await putData({
       title,
       ingredients,
       method,
-      cookingTime: cookingTime + "minutes",
+      cookingTime,
     });
-    history.push("/");
   };
 
   const handleAdd = (e) => {

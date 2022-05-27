@@ -1,0 +1,25 @@
+$title-color: rgb(218, 215, 164);
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  h1 {
+    a {
+      color: $title-color;
+    }
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .create {
+    padding: 20px 60px;
+  }
+
+  .create-link {
+    margin-left: 16px;
+  }
+}

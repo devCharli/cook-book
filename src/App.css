@@ -1,4 +1,21 @@
-.navbar {
+* {
+  margin: 0;
+}
+
+.App {
+  min-height: 100%;
+}
+
+.App.dark {
+  background: #333;
+  color: #eee;
+}
+
+.App.dark a {
+  color: #eee;
+}
+
+/* .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +33,7 @@
 
 .create-link {
   margin-left: 16px;
-}
+} */
 
 .recipe-list {
   padding: 20px 40px;
@@ -64,4 +81,29 @@ label {
 
 label span {
   display: block;
+}
+
+/* theme selector */
+.theme-selector {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+.theme-buttons div {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: 15px;
+  border-radius: 50%;
+}
+.mode-toggle {
+  margin-right: auto;
+}
+.mode-toggle img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }

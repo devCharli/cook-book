@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -7,30 +8,33 @@ const Recipe = () => {
   const { id } = useParams();
   const history = useHistory();
   const url = "http://localhost:3004/recipes/" + id;
-  const { data: recipe, isPending, error } = useFetch(url);
-
+  const { data, isPending, error } = useFetch(url);
+  const { deleteData, data: recipe } = useFetch(url, "DELETE");
   const handleDelete = () => {
-    fetch(url, {
-      method: "DELETE",
-    });
-    history.push("/");
+    deleteData();
   };
+
+  useEffect(() => {
+    if (recipe) {
+      history.push("/");
+    }
+  }, [recipe]);
 
   return (
     <>
       {error && <p>{error}</p>}
       {isPending && <p>Loading...</p>}
-      {recipe && (
+      {data && (
         <div className="single-recipe">
-          <h2>{recipe.title}</h2>
-          <p>Takes {recipe.cookingTime} to cook.</p>
+          <h2>{data.title}</h2>
+          <p>Takes {data.cookingTime} to cook.</p>
           <ul>
-            {recipe.ingredients &&
-              recipe.ingredients.map((ing) => <li key={ing}>{ing}</li>)}
+            {data.ingredients &&
+              data.ingredients.map((ing) => <li key={ing}>{ing}</li>)}
           </ul>
-          <p>{recipe.method}</p>
+          <p>{data.method}</p>
           <button onClick={handleDelete}>Delete</button>
-          <Link to={`/edit/${recipe.id}`}>Edit Recipe</Link>
+          <Link to={`/edit/${data.id}`}>Edit Recipe</Link>
         </div>
       )}
     </>

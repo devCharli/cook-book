@@ -4,7 +4,9 @@ const useFetch = (url, method = "GET") => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
+  // rendering 할 필요가 없는 (ui에 안 보여지는 거면) state로 관리될 필요가 없음
   const [options, setOptions] = useState(null);
+
   const postData = (postData) => {
     setOptions({
       method: "POST",
@@ -12,12 +14,21 @@ const useFetch = (url, method = "GET") => {
       body: JSON.stringify(postData),
     });
   };
+  // putData는 await로 promise를 변환하는게 아님,
+  // 그냥 setOption만 변경해 주는거임
 
   const putData = (putData) => {
     setOptions({
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(putData),
+    });
+  };
+
+  const deleteData = () => {
+    setOptions({
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
     });
   };
 
@@ -62,12 +73,16 @@ const useFetch = (url, method = "GET") => {
       fetchData(options);
     }
 
+    if (method === "DELETE" && options) {
+      fetchData(options);
+    }
+
     return () => {
       controller.abort();
     };
   }, [url, method, options]);
 
-  return { data, isPending, error, postData, putData, options };
+  return { data, isPending, error, postData, putData, deleteData };
 };
 
 export default useFetch;

@@ -1,41 +1,25 @@
 {
   "recipes": [
     {
-      "title": "호박죽",
+      "title": "egg benedict44",
       "ingredients": [
-        "duck"
+        "english mufin",
+        "egg",
+        "sauce",
+        "o"
       ],
-      "method": "oil",
-      "cookingTime": "33minutesminutesminutesminutesminutesminutesminutesminutesminutesminutesminutesminutes",
-      "id": "j1K5vR5"
+      "method": "cook egg\n",
+      "cookingTime": "20minutes",
+      "id": 1
     },
     {
       "title": "삼계탕",
       "ingredients": [
-        "food",
         "닭"
       ],
-      "method": "je;;p",
-      "cookingTime": "111minutesminutes",
-      "id": "e6JlteT"
-    },
-    {
-      "title": "전복죽",
-      "ingredients": [
-        "호박"
-      ],
-      "method": "끓읻나",
-      "cookingTime": "30minutesminutes",
-      "id": "_7f5ZRm"
-    },
-    {
-      "title": "egg benedict",
-      "ingredients": [
-        "egg"
-      ],
-      "method": "mix mix",
-      "cookingTime": "19minutes",
-      "id": "LkyPFoR"
+      "method": "닭을 끓인다 팔팔",
+      "cookingTime": "60minutes",
+      "id": 2
     }
   ]
 }
